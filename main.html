@@ -7,15 +7,9 @@
 		<link rel="stylesheet" href="style.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script type="importmap">{"imports": {"vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"}}</script>
 	</head>
 	<body>
-		<script type="importmap">
-		{
-		"imports": {"vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"}
-		}
-		</script>
-		
-		
 		
 		<!--
 			Layout of the app
@@ -30,7 +24,11 @@
 				<div class="col"></div>
 					<div id="screen">
 						<div id="app">
-							
+							<div id="currentRunningCycle">
+								<p>You are running:</p>
+								<div id="userSelectedCycle"></div>
+								<input type="button" class="btn" value="Cancel" id="cancelBtn"></input>
+							</div>
 						</div>
 					</div>
 				<div class="col"></div>
