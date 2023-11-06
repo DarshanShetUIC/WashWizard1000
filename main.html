@@ -11,9 +11,8 @@
 	</head>
 	<body>
 		
-		<!--
-			Layout of the app
-		-->
+
+
 		<div class="container" id="appContainer">
 			<div class="row mySpacer">
 				<div class="col"></div>
@@ -23,14 +22,40 @@
 			<div class="row">
 				<div class="col"></div>
 					<div id="screen">
+					
+					
+					
 						<div id="app">
-							<div id="currentRunningCycle">
-								<p>You are running:</p>
-								<img src="icons/cycle_glossary_icon_96.png" alt="Term G">
-								<p></p>
-								<input type="button" class="btn" value="Cancel" id="cancelBtn"></input>
+							<div id="mainMenuSlide" class="slide" v-bind:style="mainMenuSlideCSS">
+								<div class="washCycle">
+									<p v-for="item in washCycles.list">{{item.name}}</p>
+								</div>
+							</div>
+							<div id="washOptionsSlide" class="slide" v-bind:style="washOptionsSlideCSS">
+								<div class=container>
+									<div class="row">
+										<div class="col-4" v-for="item in washCycles.list">
+											{{item.name}}
+										</div>
+									</div>
+								</div>
+							</div>
+							<div id="currentRunningCycleSlide" class="slide" v-bind:style="currentRunningCycleSlideCSS">
+								<p>You are running: {{chosenCycle.name}}</p>
+								<img src="icons/cycle_glossary_icon_96.png">
+								<p v-on:click="test2" disabled>with these settings: {{chosenCycle.spin}}</p>
+								<input v-on:click="test" type="button" class="btn" value="Cancel" id="cancelBtn"></input>
+							</div>
+							<div id="customCycleSlide" class="slide" v-bind:style="customCycleSlideCSS">
+								
+							</div>
+							<div id="cycleGlossarySlide" class="slide" v-bind:style="cycleGlossarySlideCSS">
+								
 							</div>
 						</div>
+						
+						
+						
 					</div>
 				<div class="col"></div>
 			</div>
@@ -48,11 +73,89 @@
 		<script type="module">
 		import { createApp } from 'vue'
 
-		createApp({ 
+		var myVueApp = createApp({ 
 			data() {
 				return {
-				message: 'Hello Vue!'
+					chosenCycle:{
+						name: "???",
+						temp: 0,
+						rinse: 0,
+						soil: "Low",
+						spin: "High",
+					},
+					mainMenuSlideCSS:{
+						display: "none",
+					},
+					washOptionsSlideCSS:{
+						display: "none",
+					},
+					currentRunningCycleSlideCSS:{
+						display: "block",
+					},
+					cycleGlossarySlideCSS:{
+						display: "none",
+					},
+					customCycleSlideCSS:{
+						display: "none",
+					},
+					washCycles: {
+						list:[
+							{
+								name: "Normal",
+								temp: 0,
+								rinse: 0,
+								soil: "",
+								spin: "Med"
+							},
+							{
+								name: "Perm Press",
+								temp: 0,
+								rinse: 0,
+								soil: "",
+								spin: "Med"
+							},
+							{
+								name: "Delicates",
+								temp: 0,
+								rinse: 0,
+								soil: "",
+								spin: "Med"
+							},
+							{
+								name: "Heavy Duty",
+								temp: 0,
+								rinse: 0,
+								soil: "",
+								spin: "Med"
+							},
+							{
+								name: "Poop",
+								temp: 0,
+								rinse: 0,
+								soil: "",
+								spin: "Med"
+							},
+						]
+					},
 				}
+			},
+			mounted(){
+				console.log("App is ready");
+			},
+			methods:{
+				test(){
+					this.message = "Perm Press"
+				},
+				test2(){
+					this.currentRunningCycleSlideCSS.display = "none";
+					setTimeout(() => {
+						this.washOptionsSlideCSS.display = "block";
+					},500);
+					console.log("Hello World!");
+				},
+				outputBtn(){
+					
+				},
 			}
 		}).mount('#app')
 		</script>

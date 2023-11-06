@@ -35,16 +35,18 @@ body{
 	background-color: white;
 }
 
-/*
-	Running cycle screen CSS
-*/
-
-#currentRunningCycle{
+.slide{
 	border: 1px solid red;
 	text-align: center;
 	display:block;
 	height: 100%;
 }
+
+/*
+	Running cycle screen CSS
+*/
+
+
 
 
 .btn{
