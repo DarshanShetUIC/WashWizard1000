@@ -46,16 +46,15 @@ body{
 	Running cycle screen CSS
 */
 
-
-
-
-.btn{
+.washCycleBtn{
+	width: 150px;
+	display:block;
 	transition-duration: 0.2s;
 }
 
-.btn:hover {
+.washCycleBtn:hover {
   background-color: #fc9aaa; /* Green */
-  color: black;
+  color: white;
 }
 
 

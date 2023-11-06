@@ -33,16 +33,19 @@
 							</div>
 							<div id="washOptionsSlide" class="slide" v-bind:style="washOptionsSlideCSS">
 								<div class=container>
-									<div class="row">
-										<div class="col-4" v-for="item in washCycles.list">
-											{{item.name}}
+									<div class="row" style="margin: auto; width: 70%; border: 1px solid white;">
+										<div class="col-4" v-for="(item, index) in washCycles.list" style="padding: 4px;">
+											<button class="washCycleBtn btn" v-bind:id="index" v-on:click="outputBtn(index)">
+												<img v-bind:src="item.source" style="margin-bottom:0.5em"></img>
+												<p style="margin-bottom: 0">{{item.name}}</p>
+											</button>
 										</div>
 									</div>
 								</div>
 							</div>
 							<div id="currentRunningCycleSlide" class="slide" v-bind:style="currentRunningCycleSlideCSS">
 								<p>You are running: {{chosenCycle.name}}</p>
-								<img src="icons/cycle_glossary_icon_96.png">
+								<img src="icons/Normal.png">
 								<p v-on:click="test2" disabled>with these settings: {{chosenCycle.spin}}</p>
 								<input v-on:click="test" type="button" class="btn" value="Cancel" id="cancelBtn"></input>
 							</div>
@@ -82,15 +85,16 @@
 						rinse: 0,
 						soil: "Low",
 						spin: "High",
+						source: "url"
 					},
 					mainMenuSlideCSS:{
 						display: "none",
 					},
 					washOptionsSlideCSS:{
-						display: "none",
+						display: "block",
 					},
 					currentRunningCycleSlideCSS:{
-						display: "block",
+						display: "none",
 					},
 					cycleGlossarySlideCSS:{
 						display: "none",
@@ -105,35 +109,56 @@
 								temp: 0,
 								rinse: 0,
 								soil: "",
-								spin: "Med"
+								spin: "Med",
+								source: "icons/Normal.png"
 							},
 							{
 								name: "Perm Press",
 								temp: 0,
 								rinse: 0,
 								soil: "",
-								spin: "Med"
+								spin: "Med",
+								source: "icons/Perm Press.png"
 							},
 							{
 								name: "Delicates",
 								temp: 0,
 								rinse: 0,
 								soil: "",
-								spin: "Med"
+								spin: "Med",
+								source: "icons/Delicates.png"
 							},
 							{
 								name: "Heavy Duty",
 								temp: 0,
 								rinse: 0,
 								soil: "",
-								spin: "Med"
+								spin: "Med",
+								source: "icons/Heavy Duty.png"
 							},
 							{
 								name: "Poop",
 								temp: 0,
 								rinse: 0,
 								soil: "",
-								spin: "Med"
+								spin: "Med",
+								source: "url"
+							},
+							{
+								name: "More poop",
+								temp: 0,
+								rinse: 0,
+								soil: "",
+								spin: "Med",
+								source: "url"
+							},
+							{
+								name: "Custom",
+								temp: 0,
+								rinse: 0,
+								soil: "",
+								spin: "Med",
+								source: "url"
 							},
 						]
 					},
@@ -153,8 +178,8 @@
 					},500);
 					console.log("Hello World!");
 				},
-				outputBtn(){
-					
+				outputBtn(idx){
+					console.log("Button " + idx + " was pressed!");
 				},
 			}
 		}).mount('#app')
