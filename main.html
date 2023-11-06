@@ -33,7 +33,7 @@
 							</div>
 							<div id="washOptionsSlide" class="slide" v-bind:style="washOptionsSlideCSS">
 								<div class=container>
-									<div class="row" style="margin: auto; width: 70%; border: 1px solid white;">
+									<div class="row" style="margin: auto; width: 70%; border: 1px solid blue;">
 										<div class="col-4" v-for="(item, index) in washCycles.list" style="padding: 4px;">
 											<button class="washCycleBtn btn" v-bind:id="index" v-on:click="outputBtn(index)">
 												<img v-bind:src="item.source" style="margin-bottom:0.5em"></img>
@@ -44,10 +44,12 @@
 								</div>
 							</div>
 							<div id="currentRunningCycleSlide" class="slide" v-bind:style="currentRunningCycleSlideCSS">
-								<p>You are running: {{chosenCycle.name}}</p>
-								<img src="icons/Normal.png">
-								<p v-on:click="test2" disabled>with these settings: {{chosenCycle.spin}}</p>
-								<input v-on:click="test" type="button" class="btn" value="Cancel" id="cancelBtn"></input>
+								<p>You are running:</p>
+								<div>
+									<img v-bind:src="chosenCycle.source" style="margin-bottom:0.5em"></img>
+									<p style="margin-bottom: 0">{{chosenCycle.name}}</p>
+								</div>
+								<input v-on:click="cancelWash" type="button" class="btn" value="Cancel" id="cancelBtn"></input>
 							</div>
 							<div id="customCycleSlide" class="slide" v-bind:style="customCycleSlideCSS">
 								
@@ -80,12 +82,12 @@
 			data() {
 				return {
 					chosenCycle:{
-						name: "???",
+						name: "Normal",
 						temp: 0,
 						rinse: 0,
 						soil: "Low",
 						spin: "High",
-						source: "url"
+						source: "icons/Normal.png"
 					},
 					mainMenuSlideCSS:{
 						display: "none",
@@ -168,18 +170,18 @@
 				console.log("App is ready");
 			},
 			methods:{
-				test(){
-					this.message = "Perm Press"
-				},
-				test2(){
+				cancelWash(){
 					this.currentRunningCycleSlideCSS.display = "none";
 					setTimeout(() => {
-						this.washOptionsSlideCSS.display = "block";
-					},500);
-					console.log("Hello World!");
+						this.mainMenuSlideCSS.display = "block";
+					},300);
 				},
 				outputBtn(idx){
 					console.log("Button " + idx + " was pressed!");
+					this.washOptionsSlideCSS.display = "none";
+					setTimeout(() => {
+						this.currentRunningCycleSlideCSS.display = "block";
+					},300);
 				},
 			}
 		}).mount('#app')
