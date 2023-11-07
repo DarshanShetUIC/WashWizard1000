@@ -26,8 +26,22 @@
 					
 						<div id="app">
 							<div id="mainMenuSlide" class="slide" v-bind:style="mainMenuSlideCSS">
-								<div class="washCycle">
-									<p v-for="item in washCycles.list">{{item.name}}</p>
+								<div class=container>
+									<h1>Wash Wizard</h1>
+									<div id="menuButtons" class="row">
+										<div>
+											<button class="selectCycleBtn" v-on:click="selectCycles">
+												<img src="icons/Select Cycle.png" alt="Select a Cycle"><br>
+												Select Cycle
+											</button>
+										</div>
+										<div>
+											<button class="cycleGlossaryBtn" v-on:click="openGlossary">
+												<img src="icons/Cycle Glossary.png" alt="Select a Cycle"><br>
+												Cycle Glossary
+											</button>
+										</div>
+									</div>
 								</div>
 							</div>
 							<div id="washOptionsSlide" class="slide" v-bind:style="washOptionsSlideCSS">
@@ -124,6 +138,18 @@
 
 		var myVueApp = createApp({
 			methods:{
+				openGlossary(){
+					this.mainMenuSlideCSS.display = "none";
+					setTimeout(() => {
+						this.cycleGlossarySlideCSS.display = "block";
+					},300);
+				},
+				selectCycles(){
+					this.mainMenuSlideCSS.display = "none";
+					setTimeout(() => {
+						this.washOptionsSlideCSS.display = "block";
+					},300);
+				},
 				cancelWash(){
 					this.currentRunningCycleSlideCSS.display = "none";
 					setTimeout(() => {
@@ -138,10 +164,18 @@
 				},
 				selectWashCycle(idx){
 					console.log("Button " + idx + " was pressed!");
-					this.washOptionsSlideCSS.display = "none";
-					setTimeout(() => {
-						this.currentRunningCycleSlideCSS.display = "block";
-					},300);
+					if (idx == 6){
+						this.washOptionsSlideCSS.display = "none";
+						setTimeout(() => {
+							this.customCycleSlideCSS.display = "block";
+						},300);
+					}
+					else{
+						this.washOptionsSlideCSS.display = "none";
+						setTimeout(() => {
+							this.currentRunningCycleSlideCSS.display = "block";
+						},300);
+					}
 				},
 				runCustomCycle(){
 					console.log("OK button was pressed!");
@@ -155,6 +189,21 @@
 			},
 			data() {
 				return {
+					mainMenuSlideCSS:{
+						display: "block",
+					},
+					washOptionsSlideCSS:{
+						display: "none",
+					},
+					currentRunningCycleSlideCSS:{
+						display: "none",
+					},
+					cycleGlossarySlideCSS:{
+						display: "none",
+					},
+					customCycleSlideCSS:{
+						display: "none",
+					},
 					optionRanges:{
 						temps:[
 							{
@@ -220,21 +269,6 @@
 						soil: 0,
 						spin: 0,
 						source: "icons/Normal.png"
-					},
-					mainMenuSlideCSS:{
-						display: "none",
-					},
-					washOptionsSlideCSS:{
-						display: "none",
-					},
-					currentRunningCycleSlideCSS:{
-						display: "none",
-					},
-					cycleGlossarySlideCSS:{
-						display: "none",
-					},
-					customCycleSlideCSS:{
-						display: "block",
 					},
 					washCycles:{
 						list:[
