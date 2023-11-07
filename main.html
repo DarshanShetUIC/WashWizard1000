@@ -52,7 +52,18 @@
 								<input v-on:click="cancelWash" type="button" class="btn" value="Cancel" id="cancelBtn"></input>
 							</div>
 							<div id="customCycleSlide" class="slide" v-bind:style="customCycleSlideCSS">
-								
+								<div class=container>
+									<div class="row" style="margin: auto; width: 70%; border: 1px solid blue;">
+										<div class="col-4" v-for="(item, index) in washCycles.list" style="padding: 4px;">
+											<!--<button class="washCycleBtn btn" v-bind:id="index" v-on:click="selectWashCycle(index)">
+												<img v-bind:src="item.source" style="margin-bottom:0.5em"></img>
+												<p style="margin-bottom: 0">{{item.name}}</p>
+											</button>-->
+											<input type="range" min="1" max="100" value="50"></input>
+											{{item.name}}
+										</div>
+									</div>
+								</div>
 							</div>
 							<div id="cycleGlossarySlide" class="slide" v-bind:style="cycleGlossarySlideCSS">
 								
@@ -108,7 +119,7 @@
 						display: "none",
 					},
 					washOptionsSlideCSS:{
-						display: "block",
+						display: "none",
 					},
 					currentRunningCycleSlideCSS:{
 						display: "none",
@@ -117,7 +128,7 @@
 						display: "none",
 					},
 					customCycleSlideCSS:{
-						display: "none",
+						display: "block",
 					},
 					washCycles:{
 						list:[
@@ -192,7 +203,7 @@
 			mounted() {
 				console.log("App is ready");
 			},
-		}).mount('#app')
+		}).mount('#app');
 		</script>
 	</body>
 </html>
