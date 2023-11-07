@@ -30,14 +30,14 @@
 									<h1>Wash Wizard</h1>
 									<div id="menuButtons" class="row">
 										<div>
-											<button class="selectCycleBtn" v-on:click="selectCycles">
-												<img src="icons/Select Cycle.png" alt="Select a Cycle"><br>
+											<button class="washCycleBtn btn" v-on:click="selectCycles">
+												<img src="icons/Select Cycle.png" alt="Select a Cycle" style="margin-bottom:0.5em"><br>
 												Select Cycle
 											</button>
 										</div>
 										<div>
-											<button class="cycleGlossaryBtn" v-on:click="openGlossary">
-												<img src="icons/Cycle Glossary.png" alt="Select a Cycle"><br>
+											<button class="washCycleBtn btn" v-on:click="openGlossary">
+												<img src="icons/Cycle Glossary.png" alt="Select a Cycle" style="margin-bottom:0.5em"><br>
 												Cycle Glossary
 											</button>
 										</div>
@@ -46,7 +46,7 @@
 							</div>
 							<div id="washOptionsSlide" class="slide" v-bind:style="washOptionsSlideCSS">
 								<div class="container">
-									<div class="row" style="margin: auto; width: 70%; border: 1px solid blue;">
+									<div class="row" style="margin: auto; width: 70%; border: 1px solid white;">
 										<div class="col-4" v-for="(item, index) in washCycles.list" style="padding: 4px;">
 											<button class="washCycleBtn btn" v-bind:id="index" v-on:click="selectWashCycle(index)">
 												<img v-bind:src="item.source" style="margin-bottom:0.5em"></img>
@@ -57,7 +57,7 @@
 								</div>
 							</div>
 							<div id="currentRunningCycleSlide" class="slide" v-bind:style="currentRunningCycleSlideCSS">
-								<p>You are running:</p>
+								<h2>You are running:</h2>
 								<div>
 									<img v-bind:src="chosenCycle.source" style="margin-bottom:0.5em"></img>
 									<p style="margin-bottom: 0">{{chosenCycle.name}}</p>
@@ -67,18 +67,19 @@
 									<img v-bind:src="optionRanges.spins[chosenCycle.spin].source" style="margin-bottom:0.5em"></img>
 									<img v-bind:src="optionRanges.rinses[chosenCycle.rinse].source" style="margin-bottom:0.5em"></img>
 								</div>
-								<input v-on:click="cancelWash" type="button" class="btn" value="Cancel" id="cancelBtn"></input>
+								<input v-on:click="cancelWash" type="button" style="margin: auto; margin-top: 20px;"
+									class="btn washCycleBtn" value="Cancel" id="cancelBtn"></input>
 							</div>
 							<div id="customCycleSlide" class="slide" v-bind:style="customCycleSlideCSS">
-								<div style="padding: 4px; border: 1px solid green; width: 100px">
-									<button class="btn" v-on:click="cancelCustomWash">
+								<div style="padding: 4px; border: 1px solid white; width: 100px">
+									<button class="btn washCycleBtn" v-on:click="cancelCustomWash">
 										<img width=50 src="icons/Back Button.png" style="margin-bottom:0.5em"></img>
-										<p style="margin-bottom: 0">Cancel</p>
+										<p style="margin-top: 0">Cancel</p>
 									</button>
 								</div>
 								<div class="container">
-									<div class="row" style="margin: auto; width: 70%; border: 1px solid blue;">
-										<div class="col-4" style="padding: 4px; border: 1px solid green;">
+									<div class="row" style="margin: auto; width: 70%; border: 1px solid white;">
+										<div class="col-4" style="padding: 4px; border: 1px solid white;">
 											<p style="margin-bottom:0.5em">Temperature:</p>
 											<img v-bind:src="optionRanges.temps[chosenCycle.temp].source" 
 											style="margin-bottom:0.5em"></img>
@@ -86,7 +87,7 @@
 											<input type="range" min="0" max="5" value="0" 
 											v-on:input="event => {this.chosenCycle.temp = event.target.value}"></input>
 										</div>
-										<div class="col-4" style="padding: 4px; border: 1px solid green;">
+										<div class="col-4" style="padding: 4px; border: 1px solid white;">
 											<p style="margin-bottom:0.5em">Soil Level:</p>
 											<img v-bind:src="optionRanges.soils[chosenCycle.soil].source" 
 											style="margin-bottom:0.5em"></img>
@@ -94,7 +95,7 @@
 											<input type="range" min="0" max="2" value="0" 
 											v-on:input="event => {this.chosenCycle.soil = event.target.value}"></input>
 										</div>
-										<div class="col-4" style="padding: 4px; border: 1px solid green;">
+										<div class="col-4" style="padding: 4px; border: 1px solid white;">
 											<p style="margin-bottom:0.5em">Number of Rinses:</p>
 											<img v-bind:src="optionRanges.rinses[chosenCycle.rinse].source" 
 											style="margin-bottom:0.5em"></img>
@@ -102,7 +103,7 @@
 											<input type="range" min="0" max="2" value="0" 
 											v-on:input="event => {this.chosenCycle.rinse = event.target.value}"></input>
 										</div>
-										<div class="col-4" style="padding: 4px; border: 1px solid green;">
+										<div class="col-4" style="padding: 4px; border: 1px solid white;">
 											<p style="margin-bottom:0.5em">Spin Speed:</p>
 											<img v-bind:src="optionRanges.spins[chosenCycle.spin].source" 
 											style="margin-bottom:0.5em"></img>
@@ -110,8 +111,8 @@
 											<input type="range" min="0" max="2" value="0" 
 											v-on:input="event => {this.chosenCycle.spin = event.target.value}"></input>
 										</div>
-										<div class="col-4" style="padding: 4px; border: 1px solid green;">
-											<button class="btn" v-on:click="runCustomCycle">
+										<div class="col-4" style="padding: 4px; border: 1px solid white;">
+											<button class="btn washCycleBtn" v-on:click="runCustomCycle">
 												<img width=50 src="icons/check_icon.png" style="margin-bottom:0.5em"></img>
 												<p style="margin-bottom: 0">Ok</p>
 											</button>
@@ -120,7 +121,7 @@
 								</div>
 							</div>
 							<div id="cycleGlossarySlide" class="slide" v-bind:style="cycleGlossarySlideCSS">
-								<p v-on:click="closeGlossary" style="padding: 4px; border: 1px solid green;">Close here</p>
+								<p v-on:click="closeGlossary" style="padding: 4px; border: 1px solid white;">Close here</p>
 							</div>
 						</div>
 						
@@ -350,7 +351,7 @@
 								source: "icons/Sanitary.png"
 							},
 							{
-								name: "Custom",
+								name: "Custom Cycle",
 								temp: 0,
 								rinse: 0,
 								soil: 0,
