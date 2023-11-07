@@ -27,8 +27,24 @@
 					
 						<div id="app">
 							<div id="mainMenuSlide" class="slide" v-bind:style="mainMenuSlideCSS">
-								<div class="washCycle">
-									<p v-for="item in washCycles.list">{{item.name}}</p>
+								<div id="mainMenuSlide" class="slide" v-bind:style="mainMenuSlideCSS">
+									<div class=container>
+										<h1>Wash Wizard</h1>
+										<div id="menuButtons" class="row">
+											<div>
+												<button class="selectCycleBtn">
+													<img src="icons/Select Cycle.png" alt="Select a Cycle"><br>
+													Select Cycle
+												</button>
+											</div>
+											<div>
+												<button class="cycleGlossaryBtn">
+													<img src="icons/Cycle Glossary.png" alt="Select a Cycle"><br>
+													Cycle Glossary
+												</button>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 							<div id="washOptionsSlide" class="slide" v-bind:style="washOptionsSlideCSS">

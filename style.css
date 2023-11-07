@@ -57,6 +57,22 @@ body{
   color: white;
 }
 
+/*
+	Main Menu CSS
+*/
+
+h1{
+	font-size: 60px;
+	margin-bottom:  50px;
+}
+
+#menuButtons
+{
+	display: flex;
+	margin: auto;
+	justify-content: space-around;
+	text-align: center;
+}
 
 
 
