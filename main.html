@@ -35,7 +35,7 @@
 								<div class=container>
 									<div class="row" style="margin: auto; width: 70%; border: 1px solid blue;">
 										<div class="col-4" v-for="(item, index) in washCycles.list" style="padding: 4px;">
-											<button class="washCycleBtn btn" v-bind:id="index" v-on:click="outputBtn(index)">
+											<button class="washCycleBtn btn" v-bind:id="index" v-on:click="selectWashCycle(index)">
 												<img v-bind:src="item.source" style="margin-bottom:0.5em"></img>
 												<p style="margin-bottom: 0">{{item.name}}</p>
 											</button>
@@ -78,7 +78,22 @@
 		<script type="module">
 		import { createApp } from 'vue'
 
-		var myVueApp = createApp({ 
+		var myVueApp = createApp({
+			methods:{
+				cancelWash(){
+					this.currentRunningCycleSlideCSS.display = "none";
+					setTimeout(() => {
+						this.mainMenuSlideCSS.display = "block";
+					},300);
+				},
+				selectWashCycle(idx){
+					console.log("Button " + idx + " was pressed!");
+					this.washOptionsSlideCSS.display = "none";
+					setTimeout(() => {
+						this.currentRunningCycleSlideCSS.display = "block";
+					},300);
+				},
+			},
 			data() {
 				return {
 					chosenCycle:{
@@ -174,24 +189,9 @@
 					},
 				}
 			},
-			mounted(){
+			mounted() {
 				console.log("App is ready");
 			},
-			methods:{
-				cancelWash(){
-					this.currentRunningCycleSlideCSS.display = "none";
-					setTimeout(() => {
-						this.mainMenuSlideCSS.display = "block";
-					},300);
-				},
-				outputBtn(idx){
-					console.log("Button " + idx + " was pressed!");
-					this.washOptionsSlideCSS.display = "none";
-					setTimeout(() => {
-						this.currentRunningCycleSlideCSS.display = "block";
-					},300);
-				},
-			}
 		}).mount('#app')
 		</script>
 	</body>
