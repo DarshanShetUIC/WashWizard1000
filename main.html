@@ -6,7 +6,6 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.css">
 		<link rel="stylesheet" href="style.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script type="importmap">{"imports": {"vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"}}</script>
 	</head>
 	<body>
@@ -32,7 +31,7 @@
 								</div>
 							</div>
 							<div id="washOptionsSlide" class="slide" v-bind:style="washOptionsSlideCSS">
-								<div class=container>
+								<div class="container">
 									<div class="row" style="margin: auto; width: 70%; border: 1px solid blue;">
 										<div class="col-4" v-for="(item, index) in washCycles.list" style="padding: 4px;">
 											<button class="washCycleBtn btn" v-bind:id="index" v-on:click="selectWashCycle(index)">
@@ -52,15 +51,51 @@
 								<input v-on:click="cancelWash" type="button" class="btn" value="Cancel" id="cancelBtn"></input>
 							</div>
 							<div id="customCycleSlide" class="slide" v-bind:style="customCycleSlideCSS">
+								<div style="padding: 4px; border: 1px solid green; width: 100px">
+									<button class="btn" v-on:click="cancelCustomWash">
+										<img width=50 src="icons/Back Button.png" style="margin-bottom:0.5em"></img>
+										<p style="margin-bottom: 0">Cancel</p>
+									</button>
+								</div>
 								<div class=container>
 									<div class="row" style="margin: auto; width: 70%; border: 1px solid blue;">
-										<div class="col-4" v-for="(item, index) in washCycles.list" style="padding: 4px;">
-											<!--<button class="washCycleBtn btn" v-bind:id="index" v-on:click="selectWashCycle(index)">
-												<img v-bind:src="item.source" style="margin-bottom:0.5em"></img>
-												<p style="margin-bottom: 0">{{item.name}}</p>
-											</button>-->
-											<input type="range" min="1" max="100" value="50"></input>
-											{{item.name}}
+										<div class="col-4" style="padding: 4px; border: 1px solid green;">
+											<p style="margin-bottom:0.5em">Temperature:</p>
+											<img v-bind:src="optionRanges.temps[chosenCycle.temp].source" 
+											style="margin-bottom:0.5em"></img>
+											<span style="margin-left:0.5em">{{optionRanges.temps[chosenCycle.temp].temp}} °C</span>
+											<input type="range" min="0" max="2" value="0" 
+											v-on:input="event => {this.chosenCycle.temp = event.target.value}"></input>
+										</div>
+										<div class="col-4" style="padding: 4px; border: 1px solid green;">
+											<p style="margin-bottom:0.5em">Soil Level:</p>
+											<img v-bind:src="optionRanges.soils[chosenCycle.soil].source" 
+											style="margin-bottom:0.5em"></img>
+											<span style="margin-left:0.5em">{{optionRanges.soils[chosenCycle.soil].level}}</span>
+											<input type="range" min="0" max="2" value="0" 
+											v-on:input="event => {this.chosenCycle.soil = event.target.value}"></input>
+										</div>
+										<div class="col-4" style="padding: 4px; border: 1px solid green;">
+											<p style="margin-bottom:0.5em">Number of Rinses:</p>
+											<img v-bind:src="optionRanges.rinses[chosenCycle.rinse].source" 
+											style="margin-bottom:0.5em"></img>
+											<span style="margin-left:0.5em">{{optionRanges.rinses[chosenCycle.rinse].num}}</span>
+											<input type="range" min="0" max="2" value="0" 
+											v-on:input="event => {this.chosenCycle.rinse = event.target.value}"></input>
+										</div>
+										<div class="col-4" style="padding: 4px; border: 1px solid green;">
+											<p style="margin-bottom:0.5em">Spin Speed:</p>
+											<img v-bind:src="optionRanges.spins[chosenCycle.spin].source" 
+											style="margin-bottom:0.5em"></img>
+											<span style="margin-left:0.5em">{{optionRanges.spins[chosenCycle.spin].speed}}</span>
+											<input type="range" min="0" max="2" value="0" 
+											v-on:input="event => {this.chosenCycle.spin = event.target.value}"></input>
+										</div>
+										<div class="col-4" style="padding: 4px; border: 1px solid green;">
+											<button class="btn" v-on:click="runCustomCycle">
+												<img width=50 src="icons/check_icon.png" style="margin-bottom:0.5em"></img>
+												<p style="margin-bottom: 0">Ok</p>
+											</button>
 										</div>
 									</div>
 								</div>
@@ -97,6 +132,12 @@
 						this.mainMenuSlideCSS.display = "block";
 					},300);
 				},
+				cancelCustomWash(){
+					this.customCycleSlideCSS.display = "none";
+					setTimeout(() => {
+						this.mainMenuSlideCSS.display = "block";
+					},300);
+				},
 				selectWashCycle(idx){
 					console.log("Button " + idx + " was pressed!");
 					this.washOptionsSlideCSS.display = "none";
@@ -104,15 +145,82 @@
 						this.currentRunningCycleSlideCSS.display = "block";
 					},300);
 				},
+				runCustomCycle(){
+					console.log("OK button was pressed!");
+					this.chosenCycle.name = "Custom";
+					this.chosenCycle.source = "icons/Custom Cycle Button.png"
+					this.customCycleSlideCSS.display = "none";
+					setTimeout(() => {
+						this.currentRunningCycleSlideCSS.display = "block";
+					},300);
+				}
 			},
 			data() {
 				return {
+					optionRanges:{
+						temps:[
+							{
+								temp: 30,
+								source: "icons/temp_30c_icon_64.png"
+							},
+							{
+								temp: 40,
+								source: "icons/temp_40c_icon_64.png"
+							},
+							{
+								temp: 50,
+								source: "icons/temp_50c_icon_64.png"
+							},
+						],
+						rinses:[
+							{
+								num: 1,
+								source: "icons/temp_30c_icon_64.png"
+							},
+							{
+								num: 2,
+								source: "icons/temp_40c_icon_64.png"
+							},
+							{
+								num: 3,
+								source: "icons/temp_50c_icon_64.png"
+							},
+						],
+						spins:[
+							{
+								speed: "Low",
+								source: "icons/temp_30c_icon_64.png"
+							},
+							{
+								speed: "Med",
+								source: "icons/temp_40c_icon_64.png"
+							},
+							{
+								speed: "High",
+								source: "icons/temp_50c_icon_64.png"
+							},
+						],
+						soils:[
+							{
+								level: "Low",
+								source: "icons/temp_30c_icon_64.png"
+							},
+							{
+								level: "Med",
+								source: "icons/temp_40c_icon_64.png"
+							},
+							{
+								level: "High",
+								source: "icons/temp_50c_icon_64.png"
+							},
+						]
+					},
 					chosenCycle:{
 						name: "Normal",
 						temp: 0,
 						rinse: 0,
-						soil: "Low",
-						spin: "High",
+						soil: 0,
+						spin: 0,
 						source: "icons/Normal.png"
 					},
 					mainMenuSlideCSS:{
@@ -136,68 +244,60 @@
 								name: "Normal",
 								temp: 0,
 								rinse: 0,
-								soil: "",
-								spin: "Med",
+								soil: 0,
+								spin: 0,
 								source: "icons/Normal.png"
 							},
 							{
 								name: "Perm Press",
 								temp: 0,
 								rinse: 0,
-								soil: "",
-								spin: "Med",
+								soil: 0,
+								spin: 0,
 								source: "icons/Perm Press.png"
 							},
 							{
 								name: "Delicates",
 								temp: 0,
 								rinse: 0,
-								soil: "",
-								spin: "Med",
+								soil: 0,
+								spin: 0,
 								source: "icons/Delicates.png"
 							},
 							{
 								name: "Heavy Duty",
 								temp: 0,
 								rinse: 0,
-								soil: "",
-								spin: "Med",
+								soil: 0,
+								spin: 0,
 								source: "icons/Heavy Duty.png"
 							},
 							{
-								name: "Poop",
+								name: "Hand Wash",
 								temp: 0,
 								rinse: 0,
-								soil: "",
-								spin: "Med",
-								source: "url"
+								soil: 0,
+								spin: 0,
+								source: "icons/Hand Wash.png"
 							},
 							{
-								name: "More poop",
+								name: "Sanitary",
 								temp: 0,
 								rinse: 0,
-								soil: "",
-								spin: "Med",
-								source: "url"
+								soil: 0,
+								spin: 0,
+								source: "icons/Sanitary.png"
 							},
 							{
 								name: "Custom",
 								temp: 0,
 								rinse: 0,
-								soil: "",
-								spin: "Med",
-								source: "url"
+								soil: 0,
+								spin: 0,
+								source: "icons/Custom Cycle Button.png"
 							},
 						]
-					},
-					glossary :{
-						list:[
-							{
-								label: "abc",
-								source: "url"
-							},
-						]
-					},
+					}
 				}
 			},
 			mounted() {
