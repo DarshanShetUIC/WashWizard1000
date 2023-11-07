@@ -115,7 +115,7 @@
 								</div>
 							</div>
 							<div id="cycleGlossarySlide" class="slide" v-bind:style="cycleGlossarySlideCSS">
-								
+								<p v-on:click="closeGlossary" style="padding: 4px; border: 1px solid green;">Close here</p>
 							</div>
 						</div>
 						
@@ -142,6 +142,12 @@
 					this.mainMenuSlideCSS.display = "none";
 					setTimeout(() => {
 						this.cycleGlossarySlideCSS.display = "block";
+					},300);
+				},
+				closeGlossary(){
+					this.cycleGlossarySlideCSS.display = "none";
+					setTimeout(() => {
+						this.mainMenuSlideCSS.display = "block";
 					},300);
 				},
 				selectCycles(){
@@ -171,6 +177,8 @@
 						},300);
 					}
 					else{
+						this.chosenCycle.name = this.washCycles.list[idx].name;
+						this.chosenCycle.source = this.washCycles.list[idx].source;
 						this.washOptionsSlideCSS.display = "none";
 						setTimeout(() => {
 							this.currentRunningCycleSlideCSS.display = "block";
@@ -180,7 +188,7 @@
 				runCustomCycle(){
 					console.log("OK button was pressed!");
 					this.chosenCycle.name = "Custom";
-					this.chosenCycle.source = "icons/Custom Cycle Button.png"
+					this.chosenCycle.source = "icons/Custom Cycle Button.png";
 					this.customCycleSlideCSS.display = "none";
 					setTimeout(() => {
 						this.currentRunningCycleSlideCSS.display = "block";
