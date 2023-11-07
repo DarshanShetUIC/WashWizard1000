@@ -26,7 +26,7 @@
 					
 						<div id="app">
 							<div id="mainMenuSlide" class="slide" v-bind:style="mainMenuSlideCSS">
-								<div class=container>
+								<div class="container">
 									<h1>Wash Wizard</h1>
 									<div id="menuButtons" class="row">
 										<div>
@@ -61,6 +61,11 @@
 								<div>
 									<img v-bind:src="chosenCycle.source" style="margin-bottom:0.5em"></img>
 									<p style="margin-bottom: 0">{{chosenCycle.name}}</p>
+									<p>with these options:</p>
+									<img v-bind:src="optionRanges.temps[chosenCycle.temp].source" style="margin-bottom:0.5em"></img>
+									<img v-bind:src="optionRanges.soils[chosenCycle.soil].source" style="margin-bottom:0.5em"></img>
+									<img v-bind:src="optionRanges.spins[chosenCycle.spin].source" style="margin-bottom:0.5em"></img>
+									<img v-bind:src="optionRanges.rinses[chosenCycle.rinse].source" style="margin-bottom:0.5em"></img>
 								</div>
 								<input v-on:click="cancelWash" type="button" class="btn" value="Cancel" id="cancelBtn"></input>
 							</div>
@@ -71,14 +76,14 @@
 										<p style="margin-bottom: 0">Cancel</p>
 									</button>
 								</div>
-								<div class=container>
+								<div class="container">
 									<div class="row" style="margin: auto; width: 70%; border: 1px solid blue;">
 										<div class="col-4" style="padding: 4px; border: 1px solid green;">
 											<p style="margin-bottom:0.5em">Temperature:</p>
 											<img v-bind:src="optionRanges.temps[chosenCycle.temp].source" 
 											style="margin-bottom:0.5em"></img>
 											<span style="margin-left:0.5em">{{optionRanges.temps[chosenCycle.temp].temp}} °C</span>
-											<input type="range" min="0" max="2" value="0" 
+											<input type="range" min="0" max="5" value="0" 
 											v-on:input="event => {this.chosenCycle.temp = event.target.value}"></input>
 										</div>
 										<div class="col-4" style="padding: 4px; border: 1px solid green;">
@@ -178,6 +183,10 @@
 					}
 					else{
 						this.chosenCycle.name = this.washCycles.list[idx].name;
+						this.chosenCycle.spin = this.washCycles.list[idx].spin;
+						this.chosenCycle.rinse = this.washCycles.list[idx].rinse;
+						this.chosenCycle.soil = this.washCycles.list[idx].soil;
+						this.chosenCycle.temp = this.washCycles.list[idx].temp;
 						this.chosenCycle.source = this.washCycles.list[idx].source;
 						this.washOptionsSlideCSS.display = "none";
 						setTimeout(() => {
@@ -226,47 +235,59 @@
 								temp: 50,
 								source: "icons/temp_50c_icon_64.png"
 							},
+							{
+								temp: 60,
+								source: "icons/temp_60c_icon_64.png"
+							},
+							{
+								temp: 70,
+								source: "icons/temp_70c_icon_64.png"
+							},
+							{
+								temp: 95,
+								source: "icons/temp_95c_icon_64.png"
+							},
 						],
 						rinses:[
 							{
 								num: 1,
-								source: "icons/temp_30c_icon_64.png"
+								source: "icons/numcycles_1_icon.png"
 							},
 							{
 								num: 2,
-								source: "icons/temp_40c_icon_64.png"
+								source: "icons/numcycles_2_icon.png"
 							},
 							{
 								num: 3,
-								source: "icons/temp_50c_icon_64.png"
+								source: "icons/numcycles_3_icon.png"
 							},
 						],
 						spins:[
 							{
 								speed: "Low",
-								source: "icons/temp_30c_icon_64.png"
+								source: "icons/spin_speed_1_icon.png"
 							},
 							{
 								speed: "Med",
-								source: "icons/temp_40c_icon_64.png"
+								source: "icons/spin_speed_2_icon.png"
 							},
 							{
 								speed: "High",
-								source: "icons/temp_50c_icon_64.png"
+								source: "icons/spin_speed_3_icon.png"
 							},
 						],
 						soils:[
 							{
 								level: "Low",
-								source: "icons/temp_30c_icon_64.png"
+								source: "icons/soil_level_1_icon.png"
 							},
 							{
 								level: "Med",
-								source: "icons/temp_40c_icon_64.png"
+								source: "icons/soil_level_2_icon.png"
 							},
 							{
 								level: "High",
-								source: "icons/temp_50c_icon_64.png"
+								source: "icons/soil_level_3_icon.png"
 							},
 						]
 					},
@@ -322,10 +343,10 @@
 							},
 							{
 								name: "Sanitary",
-								temp: 0,
-								rinse: 0,
-								soil: 0,
-								spin: 0,
+								temp: 5,
+								rinse: 2,
+								soil: 2,
+								spin: 2,
 								source: "icons/Sanitary.png"
 							},
 							{
