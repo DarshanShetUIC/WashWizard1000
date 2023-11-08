@@ -31,14 +31,16 @@
 									<div id="menuButtons" class="row">
 										<div>
 											<button class="washCycleBtn btn" v-on:click="selectCycles">
-												<img src="icons/Select Cycle.png" alt="Select a Cycle" style="margin-bottom:0.5em"><br>
+												<img src="icons/select_cycle_icon_96.png" 
+													alt="Select a Cycle" style="margin-bottom:0.5em"><br>
 												Select Cycle
 											</button>
 										</div>
 										<div>
 											<button class="washCycleBtn btn" v-on:click="openGlossary">
-												<img src="icons/Cycle Glossary.png" alt="Select a Cycle" style="margin-bottom:0.5em"><br>
-												Cycle Glossary
+												<img src="icons/cycle_glossary_icon_96.png" 
+													alt="Select a Cycle" style="margin-bottom:0.5em"><br>
+												Symbol Glossary
 											</button>
 										</div>
 									</div>
@@ -73,8 +75,8 @@
 							<div id="customCycleSlide" class="slide" v-bind:style="customCycleSlideCSS">
 								<div style="padding: 4px; border: 1px solid white; width: 100px">
 									<button class="btn washCycleBtn" v-on:click="cancelCustomWash">
-										<img width=50 src="icons/Back Button.png" style="margin-bottom:0.5em"></img>
-										<p style="margin-top: 0">Cancel</p>
+										<img width=50 src="icons/back_icon_64.png" style="margin-bottom:0.5em"></img>
+										<p style="margin-bottom: 0px">Cancel</p>
 									</button>
 								</div>
 								<div class="container">
@@ -121,7 +123,160 @@
 								</div>
 							</div>
 							<div id="cycleGlossarySlide" class="slide" v-bind:style="cycleGlossarySlideCSS">
-								<p v-on:click="closeGlossary" style="padding: 4px; border: 1px solid white;">Close here</p>
+								<div class="container">
+									<!--<div class="backbutton" style="position: absolute; top: 10px; left: 10px;">
+										<input v-on:click="closeGlossary" type="button" class="btn" value="Cancel" id="cancelBtn"></input>
+										<img src="icons/Back Button.png">
+									</div>-->
+									<button class="btn washCycleBtn" v-on:click="closeGlossary"
+										style="position: absolute; top: 3px; left: 3px; width: 85px; z-index: 1">
+										<img width=50 src="icons/back_icon_64.png" style="margin-bottom:0.5em"></img>
+										<p style="margin-bottom: 0px">Cancel</p>
+									</button>
+									<div class="col-8" style="margin: auto; width: 70%; justify-items: center;">
+										<img src="icons/Cycle Glossary Noframe.png">
+										<p>Symbol Glossary</p>
+									</div>
+									<div class="row" style="margin: auto; width: 100%;">
+										<div class="col-5" style="padding: 4px; border-right: 1px solid black;">
+											<b>Temperature</b>
+
+
+										</div>
+										<div class="col-4" style="padding: 4px; border-right: 1px solid black;">
+											<b>Cycle Types</b>
+
+
+										</div>
+										<div class="col-3" style="padding: 4px;">
+											<b>Bleach Icons</b>
+
+
+										</div>
+									</div>
+
+
+
+									<div class="row" style="margin: auto; width: 100%;">
+										<div class="col-3" style="padding: 4px; justify-items: center;">
+											<div class="row" style="justify-content: center; margin-top: 10px;">
+												<img src="icons/temp_30c_icon_64.png">
+											</div>
+											<div class="row" style="justify-content: center; margin-bottom: 20px;">
+												Wash at 30°C
+											</div>
+											
+											<div class="row" style="justify-content: center;">
+												<img src="icons/temp_40c_icon_64.png">
+											</div>
+											<div class="row" style="justify-content: center; margin-bottom: 20px;">
+												Wash at 40°C
+											</div>
+
+											<div class="row" style="justify-content: center;">
+												<img src="icons/temp_50c_icon_64.png">
+											</div>
+											<div class="row" style="justify-content: center;">
+												Wash at 50°C
+											</div>
+										</div>
+										<div class="col-2" style="padding: 4px; border-right: 1px solid black;">
+											
+											<div class="row" style="justify-content: center; margin-top: 10px;">
+												<img src="icons/temp_60c_icon_64.png">
+											</div>
+											<div class="row" style="justify-content: center; margin-bottom: 20px;">
+												Wash at 60°C
+											</div>
+											<div class="row" style="justify-content: center;">
+												<img src="icons/temp_70c_icon_64.png">
+											</div>
+											<div class="row" style="justify-content: center; margin-bottom: 20px;">
+												Wash at 70°C
+											</div>
+											<div class="row" style="justify-content: center;">
+												<img src="icons/temp_95c_icon_64.png">
+											</div>
+											<div class="row" style="justify-content: center;">
+												Wash at 95°C
+											</div>
+										</div>
+
+
+
+
+										<div class="col-2" style="padding: 4px;">
+											<div class="row" style="justify-content: center;">
+												<img src="icons/Normal Noframe.png">
+											</div>
+											<div class="row" style="justify-content: center; margin-bottom: 10px;">
+												Normal Wash
+											</div>
+											<div class="row" style="justify-content: center;">
+												<img src="icons/Perm Press Noframe.png">
+											</div>
+											<div class="row" style="justify-content: center; margin-bottom: 10px;">
+												Perm Press
+											</div>
+											<div class="row" style="justify-content: center;">
+												<img src="icons/Delicates Noframe.png">
+											</div>
+											<div class="row" style="justify-content: center; margin-bottom: 10px;">
+												Delicates
+											</div>
+										</div>
+										<div class="col-2" style="padding: 4px;border-right: 1px solid black;">
+											<div class="row" style="justify-content: center;">
+												<img src="icons/Hand Wash Noframe.png">
+											</div>
+											<div class="row" style="justify-content: center; margin-bottom: 10px;">
+												Hand Wash
+											</div>
+											<div class="row" style="justify-content: center;">
+												<img src="icons/Heavy Duty Noframe.png">
+											</div>
+											<div class="row" style="justify-content: center; margin-bottom: 10px;">
+												Heavy Duty
+											</div>
+											<div class="row" style="justify-content: center;">
+												<img src="icons/Sanitary Noframe.png">
+											</div>
+											<div class="row" style="justify-content: center; margin-bottom: 10px;">
+												Sanitary Wash
+											</div>
+										</div>
+
+
+
+
+										<div class="col-3" style="padding: 4px;">
+											<div class="row" style="justify-content: center;">
+												<img src="icons/any_bleach_icon.png">
+											</div>
+											<div class="row" style="justify-content: center; margin-bottom: 6px;">
+												Any Bleach
+											</div>
+											<div class="row" style="justify-content: center;">
+												<img src="icons/nonchlorine_bleach_icon.png">
+											</div>
+											<div class="row" style="justify-content: center; margin-bottom: 6px;">
+												Non-Chlorine Bleach
+											</div>
+											<div class="row" style="justify-content: center;">
+												<img src="icons/chlorine_bleach_icon.png">
+											</div>
+											<div class="row" style="justify-content: center; margin-bottom: 6px;">
+												Chlorine Bleach
+											</div>
+											<div class="row" style="justify-content: center;">
+												<img src="icons/no_bleach_icon.png">
+											</div>
+											<div class="row" style="justify-content: center; margin-bottom: 10px;">
+												Do Not Bleach
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 						
@@ -197,8 +352,8 @@
 				},
 				runCustomCycle(){
 					console.log("OK button was pressed!");
-					this.chosenCycle.name = "Custom";
-					this.chosenCycle.source = "icons/Custom Cycle Button.png";
+					this.chosenCycle.name = "Custom Cycle";
+					this.chosenCycle.source = "icons/custom_cycle_icon_64.png";
 					this.customCycleSlideCSS.display = "none";
 					setTimeout(() => {
 						this.currentRunningCycleSlideCSS.display = "block";
@@ -293,12 +448,12 @@
 						]
 					},
 					chosenCycle:{
-						name: "Normal",
+						name: "",
 						temp: 0,
 						rinse: 0,
 						soil: 0,
 						spin: 0,
-						source: "icons/Normal.png"
+						source: ""
 					},
 					washCycles:{
 						list:[
@@ -308,7 +463,7 @@
 								rinse: 0,
 								soil: 0,
 								spin: 0,
-								source: "icons/Normal.png"
+								source: "icons/machine_wash_icon_64.png"
 							},
 							{
 								name: "Perm Press",
@@ -316,7 +471,7 @@
 								rinse: 0,
 								soil: 0,
 								spin: 0,
-								source: "icons/Perm Press.png"
+								source: "icons/perm_press_icon_64.png"
 							},
 							{
 								name: "Delicates",
@@ -324,7 +479,7 @@
 								rinse: 0,
 								soil: 0,
 								spin: 0,
-								source: "icons/Delicates.png"
+								source: "icons/delicate_cycle_icon_64.png"
 							},
 							{
 								name: "Heavy Duty",
@@ -332,7 +487,7 @@
 								rinse: 0,
 								soil: 0,
 								spin: 0,
-								source: "icons/Heavy Duty.png"
+								source: "icons/heavy_duty_icon_64.png"
 							},
 							{
 								name: "Hand Wash",
@@ -340,7 +495,7 @@
 								rinse: 0,
 								soil: 0,
 								spin: 0,
-								source: "icons/Hand Wash.png"
+								source: "icons/hand_wash_icon_64.png"
 							},
 							{
 								name: "Sanitary",
@@ -348,7 +503,7 @@
 								rinse: 2,
 								soil: 2,
 								spin: 2,
-								source: "icons/Sanitary.png"
+								source: "icons/sanitary_cycle_icon_64.png"
 							},
 							{
 								name: "Custom Cycle",
@@ -356,7 +511,7 @@
 								rinse: 0,
 								soil: 0,
 								spin: 0,
-								source: "icons/Custom Cycle Button.png"
+								source: "icons/custom_cycle_icon_64.png"
 							},
 						]
 					}
