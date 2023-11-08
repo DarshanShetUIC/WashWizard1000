@@ -62,12 +62,12 @@
 								<h2>You are running:</h2>
 								<div>
 									<img v-bind:src="chosenCycle.source" style="margin-bottom:0.5em"></img>
-									<p style="margin-bottom: 0">{{chosenCycle.name}}</p>
+									<p style="margin-bottom: 0;">{{chosenCycle.name}}</p>
 									<p>with these options:</p>
-									<img v-bind:src="optionRanges.temps[chosenCycle.temp].source" style="margin-bottom:0.5em"></img>
-									<img v-bind:src="optionRanges.soils[chosenCycle.soil].source" style="margin-bottom:0.5em"></img>
-									<img v-bind:src="optionRanges.spins[chosenCycle.spin].source" style="margin-bottom:0.5em"></img>
-									<img v-bind:src="optionRanges.rinses[chosenCycle.rinse].source" style="margin-bottom:0.5em"></img>
+									<img v-bind:src="optionRanges.temps[chosenCycle.temp].source" style="margin-right:0.5em"></img>
+									<img v-bind:src="optionRanges.soils[chosenCycle.soil].source" style="margin-right:0.5em"></img>
+									<img v-bind:src="optionRanges.spins[chosenCycle.spin].source" style="margin-right:0.5em"></img>
+									<img v-bind:src="optionRanges.rinses[chosenCycle.rinse].source" style="margin-right:0.5em"></img>
 								</div>
 								<input v-on:click="cancelWash" type="button" style="margin: auto; margin-top: 20px;"
 									class="btn washCycleBtn" value="Cancel" id="cancelBtn"></input>
@@ -86,7 +86,7 @@
 											<img v-bind:src="optionRanges.temps[chosenCycle.temp].source" 
 											style="margin-bottom:0.5em"></img>
 											<span style="margin-left:0.5em">{{optionRanges.temps[chosenCycle.temp].temp}} °C</span>
-											<input type="range" min="0" max="5" value="0" 
+											<input type="range" min="0" max="5" value="0" class="slider" ref="tempSlider"
 											v-on:input="event => {this.chosenCycle.temp = event.target.value}"></input>
 										</div>
 										<div class="col-4" style="padding: 4px; border: 1px solid white;">
@@ -94,7 +94,7 @@
 											<img v-bind:src="optionRanges.soils[chosenCycle.soil].source" 
 											style="margin-bottom:0.5em"></img>
 											<span style="margin-left:0.5em">{{optionRanges.soils[chosenCycle.soil].level}}</span>
-											<input type="range" min="0" max="2" value="0" 
+											<input type="range" min="0" max="2" value="0" class="slider" ref="soilSlider"
 											v-on:input="event => {this.chosenCycle.soil = event.target.value}"></input>
 										</div>
 										<div class="col-4" style="padding: 4px; border: 1px solid white;">
@@ -102,7 +102,7 @@
 											<img v-bind:src="optionRanges.rinses[chosenCycle.rinse].source" 
 											style="margin-bottom:0.5em"></img>
 											<span style="margin-left:0.5em">{{optionRanges.rinses[chosenCycle.rinse].num}}</span>
-											<input type="range" min="0" max="2" value="0" 
+											<input type="range" min="0" max="2" value="0" class="slider" ref="rinseSlider"
 											v-on:input="event => {this.chosenCycle.rinse = event.target.value}"></input>
 										</div>
 										<div class="col-4" style="padding: 4px; border: 1px solid white;">
@@ -110,7 +110,7 @@
 											<img v-bind:src="optionRanges.spins[chosenCycle.spin].source" 
 											style="margin-bottom:0.5em"></img>
 											<span style="margin-left:0.5em">{{optionRanges.spins[chosenCycle.spin].speed}}</span>
-											<input type="range" min="0" max="2" value="0" 
+											<input type="range" min="0" max="2" value="0" class="slider" ref="spinSlider"
 											v-on:input="event => {this.chosenCycle.spin = event.target.value}"></input>
 										</div>
 										<div class="col-4" style="padding: 4px; border: 1px solid white;">
@@ -322,6 +322,8 @@
 					setTimeout(() => {
 						this.mainMenuSlideCSS.display = "block";
 					},300);
+					//document.getElementsByClassName("slider")[0].value = 0;
+					//this.$refs.tempSlider.click();
 				},
 				cancelCustomWash(){
 					this.customCycleSlideCSS.display = "none";
