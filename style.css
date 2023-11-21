@@ -24,6 +24,10 @@ body{
 	opacity: 1;
 }
 
+#screen:not(:hover) {
+	transition-delay: 2s;
+}
+
 img {
     user-drag: none;
     -webkit-user-drag: none;
