@@ -49,11 +49,31 @@
 								<div>
 									<img v-bind:src="chosenCycle.source" style="margin-bottom:0.5em"></img>
 									<p style="margin-bottom: 0;">{{chosenCycle.name}}</p>
-									<p>with these options:</p>
-									<img v-bind:src="optionRanges.temps[chosenCycle.temp].source" style="margin-right:0.5em"></img>
-									<img v-bind:src="optionRanges.soils[chosenCycle.soil].source" style="margin-right:0.5em"></img>
-									<img v-bind:src="optionRanges.spins[chosenCycle.spin].source" style="margin-right:0.5em"></img>
-									<img v-bind:src="optionRanges.rinses[chosenCycle.rinse].source" style="margin-right:0.5em"></img>
+									<p>with these options ↓</p>
+									<div class="container">
+										<div class="row" style="border: 1px solid white; margin:auto; width: 50%">
+											<div class="col-3" style="border: 1px solid white;">
+												<p>Temp:</p>
+												<img v-bind:src="optionRanges.temps[chosenCycle.temp].source"></img>
+												<p>{{optionRanges.temps[chosenCycle.temp].temp}} °C</p>
+											</div>
+											<div class="col-3" style="border: 1px solid white;">
+												<p>Soil:</p>
+												<img v-bind:src="optionRanges.soils[chosenCycle.soil].source"></img>
+												<p>{{optionRanges.soils[chosenCycle.soil].level}}</p>
+											</div>
+											<div class="col-3" style="border: 1px solid white;">
+												<p>Spin:</p>
+												<img v-bind:src="optionRanges.spins[chosenCycle.spin].source"></img>
+												<p>{{optionRanges.spins[chosenCycle.spin].speed}}</p>
+											</div>
+											<div class="col-3" style="border: 1px solid white;">
+												<p>Rinses:</p>
+												<img v-bind:src="optionRanges.rinses[chosenCycle.rinse].source"></img>
+												<p>{{optionRanges.rinses[chosenCycle.rinse].num}}</p>
+											</div>
+										</div>
+									</div>
 								</div>
 								<input v-on:click="changeScreens(4,1)" type="button" style="margin: auto; margin-top: 20px;"
 									class="btn washCycleBtn" value="Cancel" id="cancelBtn"></input>
