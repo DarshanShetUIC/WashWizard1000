@@ -27,13 +27,12 @@
 					
 						<div id="app">
 							<div id="washOptionsSlide" class="slide" v-bind:style="washOptionsSlideCSS">
-								<div>
-									<button class="btn washCycleBtn" v-on:click="changeScreens(1,2)" 
-										style="position: absolute; z-index: 2; padding: 8px; border: 1px solid white; width: 100px;">
-										<img width=50 src="icons/cycle_glossary_icon_96.png" style="margin-bottom:0.5em"></img>
-										<p style="margin-bottom: 0px">Symbol<br>Glossary</p>
-									</button>
-								</div>
+								<button class="btn washCycleBtn" v-on:click="changeScreens(1,2)" 
+									style="position: absolute; z-index: 3;
+									padding: 8px; border: 1px solid white; width: 100px;">
+									<img width=50 src="icons/cycle_glossary_icon_96.png" style="margin-bottom:0.5em"></img>
+									<p style="margin-bottom: 0px">Symbol<br>Glossary</p>
+								</button>
 								<div class="container">
 									<div class="row" style="margin: auto; width: 70%; border: 1px solid white;">
 										<div class="col-4" v-for="(item, index) in washCycles.list" style="padding: 4px;">
@@ -60,48 +59,58 @@
 									class="btn washCycleBtn" value="Cancel" id="cancelBtn"></input>
 							</div>
 							<div id="customCycleSlide" class="slide" v-bind:style="customCycleSlideCSS">
-								<div style="padding: 4px; border: 1px solid white; width: 100px">
-									<button class="btn washCycleBtn" v-on:click="changeScreens(3,1)">
-										<img width=50 src="icons/back_icon_64.png" style="margin-bottom:0.5em"></img>
-										<p style="margin-bottom: 0px">Cancel</p>
-									</button>
-								</div>
-								<div class="container">
+								<div class="container" style="padding:25px;">
 									<div class="row" style="margin: auto; width: 70%; border: 1px solid white;">
-										<div class="col-4" style="padding: 4px; border: 1px solid white;">
+										<div class="col-6" style="padding: 4px; border: 1px solid white;">
 											<p style="margin-bottom:0.5em">Temperature:</p>
 											<img v-bind:src="optionRanges.temps[chosenCycle.temp].source" 
 											style="margin-bottom:0.5em"></img>
 											<span style="margin-left:0.5em">{{optionRanges.temps[chosenCycle.temp].temp}} °C</span>
+											<br>
 											<input type="range" min="0" max="5" value="0" class="slider" ref="tempSlider"
 											v-on:input="event => {this.chosenCycle.temp = event.target.value}"></input>
 										</div>
-										<div class="col-4" style="padding: 4px; border: 1px solid white;">
+										<div class="col-6" style="padding: 4px; border: 1px solid white;">
 											<p style="margin-bottom:0.5em">Soil Level:</p>
 											<img v-bind:src="optionRanges.soils[chosenCycle.soil].source" 
 											style="margin-bottom:0.5em"></img>
 											<span style="margin-left:0.5em">{{optionRanges.soils[chosenCycle.soil].level}}</span>
+											<br>
 											<input type="range" min="0" max="2" value="0" class="slider" ref="soilSlider"
 											v-on:input="event => {this.chosenCycle.soil = event.target.value}"></input>
 										</div>
-										<div class="col-4" style="padding: 4px; border: 1px solid white;">
+										<div class="col-6" style="padding: 4px; border: 1px solid white;">
 											<p style="margin-bottom:0.5em">Number of Rinses:</p>
 											<img v-bind:src="optionRanges.rinses[chosenCycle.rinse].source" 
 											style="margin-bottom:0.5em"></img>
 											<span style="margin-left:0.5em">{{optionRanges.rinses[chosenCycle.rinse].num}}</span>
+											<br>
 											<input type="range" min="0" max="2" value="0" class="slider" ref="rinseSlider"
 											v-on:input="event => {this.chosenCycle.rinse = event.target.value}"></input>
 										</div>
-										<div class="col-4" style="padding: 4px; border: 1px solid white;">
+										<div class="col-6" style="padding: 4px; border: 1px solid white;">
 											<p style="margin-bottom:0.5em">Spin Speed:</p>
 											<img v-bind:src="optionRanges.spins[chosenCycle.spin].source" 
 											style="margin-bottom:0.5em"></img>
 											<span style="margin-left:0.5em">{{optionRanges.spins[chosenCycle.spin].speed}}</span>
+											<br>
 											<input type="range" min="0" max="2" value="0" class="slider" ref="spinSlider"
 											v-on:input="event => {this.chosenCycle.spin = event.target.value}"></input>
 										</div>
-										<div class="col-4" style="padding: 4px; border: 1px solid white;">
-											<button class="btn washCycleBtn" v-on:click="runCustomCycle()">
+									</div>
+								</div>
+								<div class="container" style="width:400px">
+									<div class="row mx-auto" style="margin: auto; width: 70%; border: 1px solid white;">
+										<div class="col-6" style="padding: 4px; border: 1px solid white;">
+											<button class="btn washCycleBtn mx-auto" v-on:click="changeScreens(3,1)"
+												style="padding: 4px; border: 1px solid white; width:75px;">
+												<img width=50 src="icons/back_icon_64.png" style="margin-bottom:0.5em;"></img>
+												<p style="margin-bottom: 0px">Cancel</p>
+											</button>
+										</div>
+										<div class="col-6" style="padding: 4px; border: 1px solid white;">
+											<button class="btn washCycleBtn mx-auto" v-on:click="runCustomCycle()"
+												style="padding: 4px; border: 1px solid white; width: 75px;">
 												<img width=50 src="icons/check_icon.png" style="margin-bottom:0.5em"></img>
 												<p style="margin-bottom: 0">Ok</p>
 											</button>
