@@ -79,6 +79,21 @@
 									class="btn washCycleBtn" value="Cancel" id="cancelBtn"></input>
 							</div>
 							<div id="customCycleSlide" class="slide" v-bind:style="customCycleSlideCSS">
+								<button class="btn washCycleBtn mx-auto" v-on:click="changeScreens(3,1)"
+									style="position:absolute; z-index:3; padding: 4px; border: 1px solid white; width:100px;">
+									<img width=50 src="icons/back_icon_64.png" style="margin-bottom:0.5em;"></img>
+									<p style="margin-bottom: 0px">Cancel</p>
+								</button>
+								<h2 style="position:absolute; margin-left: 250px; z-index:3;
+									border: 1px solid white;">Custom Cycle</h2>
+								<div style="position:absolute; z-index:4; margin-left: 615px;">
+								<button class="btn washCycleBtn mx-auto" v-on:click="runCustomCycle()"
+									style="border: 1px solid white; width: 100px;">
+									<img width=50 src="icons/check_icon.png" style="margin-bottom:0.5em"></img>
+									<p style="margin-bottom: 0">Ok</p>
+								</button>
+								</div>
+								<br>
 								<div class="container" style="padding:25px;">
 									<div class="row" style="margin: auto; width: 70%; border: 1px solid white;">
 										<div class="col-6" style="padding: 4px; border: 1px solid white;">
@@ -116,24 +131,6 @@
 											<br>
 											<input type="range" min="0" max="2" value="0" class="slider" ref="spinSlider"
 											v-on:input="event => {this.chosenCycle.spin = event.target.value}"></input>
-										</div>
-									</div>
-								</div>
-								<div class="container" style="width:400px">
-									<div class="row mx-auto" style="margin: auto; width: 70%; border: 1px solid white;">
-										<div class="col-6" style="padding: 4px; border: 1px solid white;">
-											<button class="btn washCycleBtn mx-auto" v-on:click="changeScreens(3,1)"
-												style="padding: 4px; border: 1px solid white; width:75px;">
-												<img width=50 src="icons/back_icon_64.png" style="margin-bottom:0.5em;"></img>
-												<p style="margin-bottom: 0px">Cancel</p>
-											</button>
-										</div>
-										<div class="col-6" style="padding: 4px; border: 1px solid white;">
-											<button class="btn washCycleBtn mx-auto" v-on:click="runCustomCycle()"
-												style="padding: 4px; border: 1px solid white; width: 75px;">
-												<img width=50 src="icons/check_icon.png" style="margin-bottom:0.5em"></img>
-												<p style="margin-bottom: 0">Ok</p>
-											</button>
 										</div>
 									</div>
 								</div>
