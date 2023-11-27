@@ -47,7 +47,7 @@
 							<div id="currentRunningCycleSlide" class="slide" v-bind:style="currentRunningCycleSlideCSS">
 								<h2>Cycle running:</h2>
 								<div>
-									<img v-bind:src="chosenCycle.source" style="margin-bottom:0.5em"></img>
+									<img v-bind:src="chosenCycle.no_border" style="margin-bottom:0.5em"></img>
 									<p style="margin-bottom: 13px;">{{chosenCycle.name}}</p>
 									<!--<p>with these options ↓</p>-->
 									<div class="container">
@@ -366,6 +366,7 @@
 						this.chosenCycle.soil = this.washCycles.list[idx].soil;
 						this.chosenCycle.temp = this.washCycles.list[idx].temp;
 						this.chosenCycle.source = this.washCycles.list[idx].source;
+						this.chosenCycle.no_border = this.washCycles.list[idx].no_border;
 						this.washOptionsSlideCSS.display = "none";
 						setTimeout(() => {
 							this.currentRunningCycleSlideCSS.display = "block";
@@ -473,7 +474,8 @@
 						rinse: 0,
 						soil: 0,
 						spin: 0,
-						source: ""
+						source: "",
+						no_border: ""
 					},
 					washCycles:{
 						list:[
@@ -483,7 +485,8 @@
 								rinse: 1,
 								soil: 1,
 								spin: 1,
-								source: "icons/machine_wash_icon_64.png"
+								source: "icons/machine_wash_icon_64.png",
+								no_border: "icons/Normal Noframe.png"
 							},
 							{
 								name: "Perm Press",
@@ -491,7 +494,8 @@
 								rinse: 0,
 								soil: 0,
 								spin: 0,
-								source: "icons/perm_press_icon_64.png"
+								source: "icons/perm_press_icon_64.png",
+								no_border: "icons/Perm Press Noframe.png"
 							},
 							{
 								name: "Delicates",
@@ -499,7 +503,8 @@
 								rinse: 0,
 								soil: 0,
 								spin: 0,
-								source: "icons/delicate_cycle_icon_64.png"
+								source: "icons/delicate_cycle_icon_64.png",
+								no_border: "icons/Delicates Noframe.png."
 							},
 							{
 								name: "Heavy Duty",
@@ -507,7 +512,8 @@
 								rinse: 2,
 								soil: 2,
 								spin: 2,
-								source: "icons/heavy_duty_icon_64.png"
+								source: "icons/heavy_duty_icon_64.png",
+								no_border: "icons/Heavy Duty Noframe.png"
 							},
 							{
 								name: "Quick Wash",
@@ -515,7 +521,8 @@
 								rinse: 0,
 								soil: 0,
 								spin: 2,
-								source: "icons/quick_wash_icon_64.png"
+								source: "icons/quick_wash_icon_64.png",
+								no_border: "icons/quick_wash_icon_64_no_border.png"
 							},
 							{
 								name: "Sanitary",
@@ -523,7 +530,8 @@
 								rinse: 2,
 								soil: 2,
 								spin: 2,
-								source: "icons/sanitary_cycle_icon_64.png"
+								source: "icons/sanitary_cycle_icon_64.png",
+								no_border: "icons/Sanitary Noframe.png"
 							},
 							{
 								name: "Custom Cycle",
@@ -531,7 +539,8 @@
 								rinse: 0,
 								soil: 0,
 								spin: 0,
-								source: "icons/custom_cycle_icon_64.png"
+								source: "icons/custom_cycle_icon_64.png",
+								no_border: "icons/custom_cycle_icon_64_no_border.png"
 							},
 						]
 					}
